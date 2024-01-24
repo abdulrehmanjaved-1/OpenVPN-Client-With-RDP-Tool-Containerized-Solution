@@ -1,0 +1,17 @@
+# Use a base image with XRDP server and Ubuntu desktop environment
+FROM danielguerra/ubuntu-xrdp
+
+# Set the working directory
+WORKDIR /app
+
+# Copy any additional configurations or scripts if needed
+COPY scripts/ /app/scripts/
+
+# Expose the RDP port
+EXPOSE 3389
+
+# Define a custom network for communication between containers
+# Ensure that both containers are attached to the same network
+# Example assumes a network named "my_network"
+# You may need to adapt this based on your specific setup
+CMD ["bash", "-c", "service xrdp start && sleep infinity"]

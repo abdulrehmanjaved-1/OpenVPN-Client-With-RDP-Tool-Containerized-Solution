@@ -1,0 +1,18 @@
+version: '3'
+services:
+  openvpn-client:
+    build:
+      context: .
+      dockerfile: Dockerfile_openvpn
+    networks:
+      - my_network
+
+  rdp-tool:
+    build:
+      context: .
+      dockerfile: Dockerfile_rdp
+    networks:
+      - my_network
+
+networks:
+  my_network:
