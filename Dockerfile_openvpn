@@ -1,0 +1,17 @@
+# Use a base image with OpenVPN client installed
+FROM ubuntu:latest
+
+# Install OpenVPN client
+RUN apt-get update && apt-get install -y openvpn
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the client's VPN configuration files and certificates
+COPY vpn_config/ /app/vpn_config/
+
+# Expose necessary ports for OpenVPN
+EXPOSE 1194
+
+# Entry point to start OpenVPN client
+ENTRYPOINT ["openvpn", "--config", "/app/vpn_config/client.ovpn"]
